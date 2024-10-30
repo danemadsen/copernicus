@@ -1,6 +1,6 @@
 import 'package:copernicus/src/satillite/copernicus_satillite.dart';
 import 'package:copernicus/src/copernicus_filtering_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_processing_options.dart';
+import 'package:copernicus/src/copernicus_processing_options.dart';
 import 'package:copernicus/src/satillite/copernicus_satillite_data.dart';
 
 class CopernicusRequestData {

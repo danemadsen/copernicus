@@ -1,14 +1,4 @@
 import 'package:copernicus/src/copernicus_enum.dart';
-import 'package:copernicus/src/copernicus_filtering_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_dem_processing_oprions.dart';
-import 'package:copernicus/src/processing_options/copernicus_processing_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_s1grd_processing_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_s2l1c_processing_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_s2l2a_processing_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_s3olcil1b_processing_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_s3olcil2_processing_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_s3slstr_processing_options.dart';
-import 'package:copernicus/src/processing_options/copernicus_s5pl2_processing_options.dart';
 import 'package:copernicus/src/satillite/copernicus_band.dart';
 
 enum CopernicusSatillite implements CopernicusEnum{

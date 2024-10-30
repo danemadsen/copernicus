@@ -1,34 +1,72 @@
-import 'package:flutter/material.dart';
-import 'package:copernicus/src/options/copernicus_sampling.dart';
-import 'package:copernicus/src/satillite/copernicus_satillite.dart';
 import 'package:copernicus/src/options/copernicus_back_coefficiency.dart';
 import 'package:copernicus/src/options/copernicus_dem_instance.dart';
 import 'package:copernicus/src/options/copernicus_speckle_filtering.dart';
-import 'package:copernicus/src/processing_options/copernicus_processing_options.dart';
+import 'package:copernicus/src/satillite/copernicus_satillite.dart';
+import 'package:copernicus/src/options/copernicus_sampling.dart';
 
-class CopernicusS1grdProcessingOptions extends CopernicusProcessingOptions {
-  @override
-  CopernicusSatillite get satillite => CopernicusSatillite.s1grd;
-  
+class CopernicusProcessingOptions {
+  final CopernicusSatillite satillite;
+  final CopernicusSampling? upSampling;
+  final CopernicusSampling? downSampling;
   final CopernicusBackCoefficiency? backCoefficiency;
   final bool? orthorectify;
   final CopernicusDemInstance? demInstance;
   final int? radiometricTerrainOversampling;
   final CopernicusSpeckleFiltering? speckleFiltering;
+  final int? minQa;
+  final bool? egm;
 
-  const CopernicusS1grdProcessingOptions({
-    super.upSampling,
-    super.downSampling,
-    this.backCoefficiency, 
-    this.orthorectify, 
-    this.demInstance, 
-    this.radiometricTerrainOversampling, 
-    this.speckleFiltering
-  });
+  CopernicusProcessingOptions({
+    required this.satillite,
+    this.upSampling, 
+    this.downSampling,
+    this.backCoefficiency,
+    this.orthorectify,
+    this.demInstance,
+    this.radiometricTerrainOversampling,
+    this.speckleFiltering,
+    this.minQa,
+    this.egm,
+  }) {
+    if (backCoefficiency != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('backCoefficiency is only available for Sentinel-1 GRD');
+    }
 
-  @override
+    if (orthorectify != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('orthorectify is only available for Sentinel-1 GRD');
+    }
+
+    if (demInstance != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('demInstance is only available for Sentinel-1 GRD');
+    }
+
+    if (radiometricTerrainOversampling != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('radiometricTerrainOversampling is only available for Sentinel-1 GRD');
+    }
+
+    if (speckleFiltering != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('speckleFiltering is only available for Sentinel-1 GRD');
+    }
+
+    if (minQa != null && satillite != CopernicusSatillite.s5pl2) {
+      throw ArgumentError('minQa is only available for Sentinel-5P L2');
+    }
+
+    if (egm != null && satillite != CopernicusSatillite.dem) {
+      throw ArgumentError('egm is only available for DEM');
+    }
+  }
+
   Map<String, dynamic> get map {
-    Map<String, dynamic> map = super.map;
+    Map<String, dynamic> map = {};
+
+    if (upSampling != null) {
+      map['upsampling'] = upSampling!.value;
+    }
+
+    if (downSampling != null) {
+      map['downsampling'] = downSampling!.value;
+    }
 
     if (backCoefficiency != null) {
       map['backCoefficiency'] = backCoefficiency!.value;
@@ -50,53 +88,18 @@ class CopernicusS1grdProcessingOptions extends CopernicusProcessingOptions {
       map['speckleFiltering'] = speckleFiltering!.map;
     }
 
+    if (minQa != null) {
+      map['minQa'] = minQa;
+    }
+
+    if (egm != null) {
+      map['egm'] = egm;
+    }
+
     return map;
   }
 
-  @override
-  Widget get widget {
-    return Column(
-      children: [
-        const Text(
-          'Processing Options',
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        if (upSampling != null)
-          Text(
-            'Up Sampling: ${upSampling!.value}',
-          ),
-        if (downSampling != null)
-          Text(
-            'Down Sampling: ${downSampling!.value}',
-          ),
-        if (backCoefficiency != null)
-          Text(
-            'Back Coefficiency: ${backCoefficiency!.value}',
-          ),
-        if (orthorectify != null)
-          Text(
-            'Orthorectify: $orthorectify',
-          ),
-        if (demInstance != null)
-          Text(
-            'Dem Instance: ${demInstance!.value}',
-          ),
-        if (radiometricTerrainOversampling != null)
-          Text(
-            'Radiometric Terrain Oversampling: $radiometricTerrainOversampling',
-          ),
-        if (speckleFiltering != null)
-          Text(
-            'Speckle Filtering: ${speckleFiltering!.value}',
-          ),
-      ],
-    );
-  }
-
-  factory CopernicusS1grdProcessingOptions.fromMap(Map<String, dynamic> map) {
+  factory CopernicusProcessingOptions.fromMap(CopernicusSatillite satillite, Map<String, dynamic> map) {
     CopernicusSampling? upSampling;
 
     if (map.containsKey('upSampling')) {
@@ -142,14 +145,29 @@ class CopernicusS1grdProcessingOptions extends CopernicusProcessingOptions {
       );
     }
 
-    return CopernicusS1grdProcessingOptions(
+    int? minQa;
+
+    if (map.containsKey('minQa')) {
+      minQa = map['minQa'];
+    }
+
+    bool? egm;
+
+    if (map.containsKey('egm')) {
+      egm = map['egm'];
+    }
+
+    return CopernicusProcessingOptions(
+      satillite: satillite,
       upSampling: upSampling,
       downSampling: downSampling,
       backCoefficiency: backCoefficiency,
       orthorectify: orthorectify,
       demInstance: demInstance,
       radiometricTerrainOversampling: radiometricTerrainOversampling,
-      speckleFiltering: speckleFiltering
+      speckleFiltering: speckleFiltering,
+      minQa: minQa,
+      egm: egm
     );
   }
 }
