@@ -1,8 +1,8 @@
-import 'package:copernicus/src/options/copernicus_back_coefficiency.dart';
-import 'package:copernicus/src/options/copernicus_dem_instance.dart';
-import 'package:copernicus/src/options/copernicus_speckle_filtering.dart';
+import 'package:copernicus/src/types/copernicus_back_coefficiency.dart';
+import 'package:copernicus/src/types/copernicus_dem_instance.dart';
+import 'package:copernicus/src/types/copernicus_speckle_filtering.dart';
 import 'package:copernicus/src/satillite/copernicus_satillite.dart';
-import 'package:copernicus/src/options/copernicus_sampling.dart';
+import 'package:copernicus/src/types/copernicus_sampling.dart';
 
 class CopernicusProcessingOptions {
   final CopernicusSatillite satillite;

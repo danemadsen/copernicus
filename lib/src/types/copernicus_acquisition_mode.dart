@@ -1,5 +1,5 @@
-import 'package:copernicus/src/copernicus_enum.dart';
-import 'package:copernicus/src/options/copernicus_polarization.dart';
+import 'package:copernicus/src/types/copernicus_enum.dart';
+import 'package:copernicus/src/types/copernicus_polarization.dart';
 
 enum CopernicusAcquisitionMode implements CopernicusEnum {
   sm,

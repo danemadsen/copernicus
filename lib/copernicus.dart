@@ -1,4 +1,4 @@
 library copernicus;
 
-export 'src/copernicus_enum.dart';
-export 'src/copernicus_filtering_options.dart';
+export 'src/types/copernicus_enum.dart';
+export 'src/options/copernicus_filtering_options.dart';

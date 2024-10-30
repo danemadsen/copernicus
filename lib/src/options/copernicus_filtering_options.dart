@@ -1,12 +1,12 @@
-import 'package:copernicus/src/options/copernicus_acquisition_mode.dart';
-import 'package:copernicus/src/options/copernicus_dem_instance.dart';
-import 'package:copernicus/src/options/copernicus_mosaicking_order.dart';
-import 'package:copernicus/src/options/copernicus_orbit_direction.dart';
-import 'package:copernicus/src/options/copernicus_polarization.dart';
-import 'package:copernicus/src/options/copernicus_resolution.dart';
-import 'package:copernicus/src/options/copernicus_time_range.dart';
-import 'package:copernicus/src/options/copernicus_timeliness.dart';
-import 'package:copernicus/src/options/copernicus_view.dart';
+import 'package:copernicus/src/types/copernicus_acquisition_mode.dart';
+import 'package:copernicus/src/types/copernicus_dem_instance.dart';
+import 'package:copernicus/src/types/copernicus_mosaicking_order.dart';
+import 'package:copernicus/src/types/copernicus_orbit_direction.dart';
+import 'package:copernicus/src/types/copernicus_polarization.dart';
+import 'package:copernicus/src/types/copernicus_resolution.dart';
+import 'package:copernicus/src/types/copernicus_time_range.dart';
+import 'package:copernicus/src/types/copernicus_timeliness.dart';
+import 'package:copernicus/src/types/copernicus_view.dart';
 import 'package:copernicus/src/satillite/copernicus_satillite.dart';
 
 class CopernicusFilteringOptions {

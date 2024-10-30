@@ -1,7 +1,7 @@
 import 'package:copernicus/src/satillite/copernicus_band.dart';
 import 'package:copernicus/src/satillite/copernicus_satillite.dart';
-import 'package:copernicus/src/copernicus_filtering_options.dart';
-import 'package:copernicus/src/copernicus_processing_options.dart';
+import 'package:copernicus/src/options/copernicus_filtering_options.dart';
+import 'package:copernicus/src/options/copernicus_processing_options.dart';
 
 class CopernicusSatilliteData {
   final CopernicusSatillite satillite;

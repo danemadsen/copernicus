@@ -1,4 +1,4 @@
-import 'package:copernicus/src/copernicus_enum.dart';
+import 'package:copernicus/src/types/copernicus_enum.dart';
 
 enum CopernicusMosaickingOrder implements CopernicusEnum {
   mostRecent,
