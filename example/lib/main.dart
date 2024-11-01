@@ -1,4 +1,8 @@
+import 'package:copernicus/copernicus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -55,71 +59,51 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  String clientId = 'YOUR_CLIENT_ID';
+  String clientSecret = 'YOUR_CLIENT_SECRET';
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    final mapOptions = MapOptions(
+      initialCenter: const LatLng(-27.47, 153.02),
+      initialZoom: 10,
+      cameraConstraint: CameraConstraint.contain(
+        bounds: LatLngBounds(
+          const LatLng(-90, -180),
+          const LatLng(90, 180),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      )
+    );
+
+    return FlutterMap(
+      options: mapOptions,
+      children: [
+        TileLayer(
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          subdomains: const ['a', 'b', 'c'],
+          userAgentPackageName: 'com.example.copernicus',
+          tileProvider: CancellableNetworkTileProvider(),
+        ),
+        CopernicusLayer(
+          clientId: clientId, 
+          clientSecret: clientSecret, 
+          data: [
+            CopernicusRequestData(
+              satillite: CopernicusSatillite.s2l2a, 
+              filteringOptions: CopernicusFilteringOptions(
+                satillite: CopernicusSatillite.s2l2a,
+                mosaickingOrder: CopernicusMosaickingOrder.mostRecent,
+                maxCloudCoverage: 100,
+              ),
+              processingOptions: CopernicusProcessingOptions(
+                satillite: CopernicusSatillite.s2l2a,
+                downSampling: CopernicusSampling.nearest,
+                upSampling: CopernicusSampling.bicubic,
+              )
+            )
+          ]
+        )
+      ],
     );
   }
 }
