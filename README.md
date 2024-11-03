@@ -1,39 +1,105 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Copernicus
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A flutter_maps extension package for Copernicus API
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+This package provides a `CopernicusLayer` widget that can be used in conjunction with the `flutter_map` package to display Copernicus satellite imagery on a map.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use this package, add `copernicus` as a [dependency in your pubspec.yaml file](https://flutter.dev/docs/development/packages-and-plugins/using-packages).
 
-## Usage
+```yaml
+dependencies:
+  copernicus: ^1.0.0
+```
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+## Example
+
+Here is an example of how to use this package:
 
 ```dart
-const like = 'sample';
+import 'package:copernicus/copernicus.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong2/latlong.dart';
+import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
+
+void main() {
+  runApp(const CopernicusExampleApp());
+}
+
+class CopernicusExampleApp extends StatelessWidget {
+  const CopernicusExampleApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      title: 'Copernicus Example',
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String clientId = 'YOUR_CLIENT_ID';
+  String clientSecret = 'YOUR_CLIENT_SECRET';
+
+  @override
+  Widget build(BuildContext context) {
+    final mapOptions = MapOptions(
+      initialCenter: const LatLng(-27.47, 153.02),
+      initialZoom: 10,
+      cameraConstraint: CameraConstraint.contain(
+        bounds: LatLngBounds(
+          const LatLng(-90, -180),
+          const LatLng(90, 180),
+        ),
+      )
+    );
+
+    return FlutterMap(
+      options: mapOptions,
+      children: [
+        TileLayer(
+          urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+          subdomains: const ['a', 'b', 'c'],
+          userAgentPackageName: 'com.example.copernicus',
+          tileProvider: CancellableNetworkTileProvider(),
+        ),
+        CopernicusLayer(
+          clientId: clientId, 
+          clientSecret: clientSecret, 
+          data: [
+            CopernicusRequestData(
+              satillite: CopernicusSatillite.s2l2a, 
+              filteringOptions: CopernicusFilteringOptions(
+                satillite: CopernicusSatillite.s2l2a,
+                mosaickingOrder: CopernicusMosaickingOrder.mostRecent,
+                maxCloudCoverage: 100,
+              ),
+              processingOptions: CopernicusProcessingOptions(
+                satillite: CopernicusSatillite.s2l2a,
+                downSampling: CopernicusSampling.nearest,
+                upSampling: CopernicusSampling.bicubic,
+              )
+            )
+          ]
+        )
+      ],
+    );
+  }
+}
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+For more information about the copernicus API, please visit the [Copernicus API documentation](https://documentation.dataspace.copernicus.eu/Home.html)
