@@ -30,31 +30,31 @@ class CopernicusLayer extends StatefulWidget {
 
 class _CopernicusLayerState extends State<CopernicusLayer> {
   Future<String> getAuthToken() async {
-  final dio = widget.dioClient ?? Dio();
-  try {
-    final response = await dio.post(
-      'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token',
-      options: Options(
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      ),
-      data: {
-        'grant_type': 'client_credentials',
-        'client_id': widget.clientId,
-        'client_secret': widget.clientSecret,
-      },
-    );
-
-    if (response.statusCode == 200) {
-      final responseData = response.data as Map<String, dynamic>;
-      return responseData['access_token'] ?? '';
-    } else {
-      throw Exception('Failed to get access token: ${response.statusCode}');
+    final dio = widget.dioClient ?? Dio();
+    try {
+      final response = await dio.post(
+        'https://identity.dataspace.copernicus.eu/auth/realms/CDSE/protocol/openid-connect/token',
+        options: Options(
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        ),
+        data: {
+          'grant_type': 'client_credentials',
+          'client_id': widget.clientId,
+          'client_secret': widget.clientSecret,
+        },
+      );
+  
+      if (response.statusCode == 200) {
+        final responseData = response.data as Map<String, dynamic>;
+        return responseData['access_token'] ?? '';
+      } else {
+        throw Exception('Failed to get access token: ${response.statusCode}');
+      }
+    } catch (e) {
+      log('Exception in getAuthToken: $e');
+      return '';
     }
-  } catch (e) {
-    log('Exception in getAuthToken: $e');
-    return '';
   }
-}
 
   @override
   Widget build(BuildContext context) {
