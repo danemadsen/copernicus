@@ -12,7 +12,7 @@ To use this package, add `copernicus` as a [dependency in your pubspec.yaml file
 
 ```yaml
 dependencies:
-  copernicus: ^1.0.0
+  copernicus: ^1.0.1
 ```
 
 ## Example
