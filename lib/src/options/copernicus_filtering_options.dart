@@ -7,10 +7,8 @@ import 'package:copernicus/src/types/copernicus_resolution.dart';
 import 'package:copernicus/src/types/copernicus_time_range.dart';
 import 'package:copernicus/src/types/copernicus_timeliness.dart';
 import 'package:copernicus/src/types/copernicus_view.dart';
-import 'package:copernicus/src/satillite/copernicus_satillite.dart';
 
 class CopernicusFilteringOptions {
-  final CopernicusSatillite satillite;
   final CopernicusMosaickingOrder? mosaickingOrder;
   final CopernicusResolution? resolution;
   final CopernicusAcquisitionMode? acquisitionMode;
@@ -68,8 +66,7 @@ class CopernicusFilteringOptions {
     return map;
   }
 
-  CopernicusFilteringOptions({
-    required this.satillite,
+  const CopernicusFilteringOptions({
     this.mosaickingOrder,
     this.resolution,
     this.acquisitionMode,
@@ -80,49 +77,9 @@ class CopernicusFilteringOptions {
     this.timeRange,
     this.view,
     this.instance,
-  }) {
-    if (mosaickingOrder != null && (satillite == CopernicusSatillite.dem || satillite == CopernicusSatillite.datafusion)) {
-      throw ArgumentError('Mosaicking Order is not available for $satillite');
-    }
+  });
 
-    if (resolution != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('Resolution is not available for $satillite');
-    }
-
-    if (acquisitionMode != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('Acquisition Mode is not available for $satillite');
-    }
-
-    if (polarization != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('Polarization is not available for $satillite');
-    }
-
-    if (orbitDirection != null && satillite != CopernicusSatillite.s1grd && satillite != CopernicusSatillite.s3slstr) {
-      throw ArgumentError('Orbit Direction is not available for $satillite');
-    }
-
-    if (timeRange != null && satillite != CopernicusSatillite.s5pl2) {
-      throw ArgumentError('Time Range is not available for $satillite');
-    }
-
-    if (timeliness != null && satillite != CopernicusSatillite.s1grd && satillite != CopernicusSatillite.s5pl2) {
-      throw ArgumentError('Timeliness is not available for $satillite');
-    }
-
-    if (maxCloudCoverage != null && satillite != CopernicusSatillite.s2l1c && satillite != CopernicusSatillite.s2l2a && satillite != CopernicusSatillite.s3olcil2) {
-      throw ArgumentError('Max Cloud Coverage is not available for $satillite');
-    }
-
-    if (view != null && satillite != CopernicusSatillite.s3slstr) {
-      throw ArgumentError('View is not available for $satillite');
-    }
-
-    if (instance != null && satillite != CopernicusSatillite.dem) {
-      throw ArgumentError('Instance is not available for $satillite');
-    }
-  }
-
-  factory CopernicusFilteringOptions.fromMap(CopernicusSatillite satillite, Map<String, dynamic> map) {
+  factory CopernicusFilteringOptions.fromMap(Map<String, dynamic> map) {
     CopernicusMosaickingOrder? mosaickingOrder;
 
     if (map.containsKey('mosaickingOrder')) {
@@ -187,7 +144,6 @@ class CopernicusFilteringOptions {
     }
 
     return CopernicusFilteringOptions(
-      satillite: satillite,
       mosaickingOrder: mosaickingOrder,
       resolution: resolution,
       acquisitionMode: acquisitionMode,

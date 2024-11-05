@@ -56,16 +56,14 @@ class _HomePageState extends State<HomePage> {
         CopernicusLayer(
           clientId: clientId, 
           clientSecret: clientSecret, 
-          data: [
+          data: const [
             CopernicusRequestData(
               satillite: CopernicusSatillite.s2l2a, 
               filteringOptions: CopernicusFilteringOptions(
-                satillite: CopernicusSatillite.s2l2a,
                 mosaickingOrder: CopernicusMosaickingOrder.mostRecent,
                 maxCloudCoverage: 100,
               ),
               processingOptions: CopernicusProcessingOptions(
-                satillite: CopernicusSatillite.s2l2a,
                 downSampling: CopernicusSampling.nearest,
                 upSampling: CopernicusSampling.bicubic,
               )

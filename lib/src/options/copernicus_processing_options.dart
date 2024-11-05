@@ -1,11 +1,9 @@
 import 'package:copernicus/src/types/copernicus_back_coefficiency.dart';
 import 'package:copernicus/src/types/copernicus_dem_instance.dart';
 import 'package:copernicus/src/types/copernicus_speckle_filtering.dart';
-import 'package:copernicus/src/satillite/copernicus_satillite.dart';
 import 'package:copernicus/src/types/copernicus_sampling.dart';
 
 class CopernicusProcessingOptions {
-  final CopernicusSatillite satillite;
   final CopernicusSampling? upSampling;
   final CopernicusSampling? downSampling;
   final CopernicusBackCoefficiency? backCoefficiency;
@@ -16,8 +14,7 @@ class CopernicusProcessingOptions {
   final int? minQa;
   final bool? egm;
 
-  CopernicusProcessingOptions({
-    required this.satillite,
+  const CopernicusProcessingOptions({
     this.upSampling, 
     this.downSampling,
     this.backCoefficiency,
@@ -27,35 +24,7 @@ class CopernicusProcessingOptions {
     this.speckleFiltering,
     this.minQa,
     this.egm,
-  }) {
-    if (backCoefficiency != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('backCoefficiency is only available for Sentinel-1 GRD');
-    }
-
-    if (orthorectify != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('orthorectify is only available for Sentinel-1 GRD');
-    }
-
-    if (demInstance != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('demInstance is only available for Sentinel-1 GRD');
-    }
-
-    if (radiometricTerrainOversampling != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('radiometricTerrainOversampling is only available for Sentinel-1 GRD');
-    }
-
-    if (speckleFiltering != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('speckleFiltering is only available for Sentinel-1 GRD');
-    }
-
-    if (minQa != null && satillite != CopernicusSatillite.s5pl2) {
-      throw ArgumentError('minQa is only available for Sentinel-5P L2');
-    }
-
-    if (egm != null && satillite != CopernicusSatillite.dem) {
-      throw ArgumentError('egm is only available for DEM');
-    }
-  }
+  });
 
   Map<String, dynamic> get map {
     Map<String, dynamic> map = {};
@@ -99,7 +68,7 @@ class CopernicusProcessingOptions {
     return map;
   }
 
-  factory CopernicusProcessingOptions.fromMap(CopernicusSatillite satillite, Map<String, dynamic> map) {
+  factory CopernicusProcessingOptions.fromMap(Map<String, dynamic> map) {
     CopernicusSampling? upSampling;
 
     if (map.containsKey('upSampling')) {
@@ -158,7 +127,6 @@ class CopernicusProcessingOptions {
     }
 
     return CopernicusProcessingOptions(
-      satillite: satillite,
       upSampling: upSampling,
       downSampling: downSampling,
       backCoefficiency: backCoefficiency,
