@@ -1,6 +1,6 @@
 # Copernicus
 
-A flutter_maps extension package for Copernicus API
+A flutter_maps extension package for utilising the Copernicus API to retrieve sentinel satellite imagery.
 
 ## Features
 
