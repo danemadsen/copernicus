@@ -34,4 +34,9 @@ class CopernicusRequestData {
 
     return map;
   }
+
+  void validate() {
+    filteringOptions.validate(satillite);
+    processingOptions?.validate(satillite);
+  }
 }

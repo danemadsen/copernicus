@@ -1,6 +1,6 @@
 name: copernicus
-description: "A flutter_maps extension package for Copernicus API"
-version: 1.0.0
+description: "A flutter_maps extension package for utilising the Copernicus API to retrieve sentinel satellite imagery."
+version: 1.0.1
 homepage: "https://github.com/danemadsen/copernicus"
 
 environment:

@@ -1,3 +1,4 @@
+import 'package:copernicus/src/satillite/copernicus_satillite.dart';
 import 'package:copernicus/src/types/copernicus_back_coefficiency.dart';
 import 'package:copernicus/src/types/copernicus_dem_instance.dart';
 import 'package:copernicus/src/types/copernicus_speckle_filtering.dart';
@@ -137,5 +138,35 @@ class CopernicusProcessingOptions {
       minQa: minQa,
       egm: egm
     );
+  }
+
+  void validate(CopernicusSatillite satillite) {
+    if (backCoefficiency != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('backCoefficiency is only available for Sentinel-1 GRD');
+    }
+
+    if (orthorectify != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('orthorectify is only available for Sentinel-1 GRD');
+    }
+
+    if (demInstance != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('demInstance is only available for Sentinel-1 GRD');
+    }
+
+    if (radiometricTerrainOversampling != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('radiometricTerrainOversampling is only available for Sentinel-1 GRD');
+    }
+
+    if (speckleFiltering != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('speckleFiltering is only available for Sentinel-1 GRD');
+    }
+
+    if (minQa != null && satillite != CopernicusSatillite.s5pl2) {
+      throw ArgumentError('minQa is only available for Sentinel-5P L2');
+    }
+
+    if (egm != null && satillite != CopernicusSatillite.dem) {
+      throw ArgumentError('egm is only available for DEM');
+    }
   }
 }

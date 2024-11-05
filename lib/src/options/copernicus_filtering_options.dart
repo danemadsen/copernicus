@@ -1,3 +1,4 @@
+import 'package:copernicus/src/satillite/copernicus_satillite.dart';
 import 'package:copernicus/src/types/copernicus_acquisition_mode.dart';
 import 'package:copernicus/src/types/copernicus_dem_instance.dart';
 import 'package:copernicus/src/types/copernicus_mosaicking_order.dart';
@@ -155,5 +156,47 @@ class CopernicusFilteringOptions {
       view: view,
       instance: instance
     );
+  }
+
+  void validate(CopernicusSatillite satillite) {
+    if (mosaickingOrder != null && (satillite == CopernicusSatillite.dem || satillite == CopernicusSatillite.datafusion)) {
+      throw ArgumentError('Mosaicking Order is not available for $satillite');
+    }
+
+    if (resolution != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('Resolution is not available for $satillite');
+    }
+
+    if (acquisitionMode != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('Acquisition Mode is not available for $satillite');
+    }
+
+    if (polarization != null && satillite != CopernicusSatillite.s1grd) {
+      throw ArgumentError('Polarization is not available for $satillite');
+    }
+
+    if (orbitDirection != null && satillite != CopernicusSatillite.s1grd && satillite != CopernicusSatillite.s3slstr) {
+      throw ArgumentError('Orbit Direction is not available for $satillite');
+    }
+
+    if (timeRange != null && satillite != CopernicusSatillite.s5pl2) {
+      throw ArgumentError('Time Range is not available for $satillite');
+    }
+
+    if (timeliness != null && satillite != CopernicusSatillite.s1grd && satillite != CopernicusSatillite.s5pl2) {
+      throw ArgumentError('Timeliness is not available for $satillite');
+    }
+
+    if (maxCloudCoverage != null && satillite != CopernicusSatillite.s2l1c && satillite != CopernicusSatillite.s2l2a && satillite != CopernicusSatillite.s3olcil2) {
+      throw ArgumentError('Max Cloud Coverage is not available for $satillite');
+    }
+
+    if (view != null && satillite != CopernicusSatillite.s3slstr) {
+      throw ArgumentError('View is not available for $satillite');
+    }
+
+    if (instance != null && satillite != CopernicusSatillite.dem) {
+      throw ArgumentError('Instance is not available for $satillite');
+    }
   }
 }

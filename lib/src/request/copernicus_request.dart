@@ -13,7 +13,11 @@ class CopernicusRequest {
     required this.input, 
     required this.output,
     required this.evalscript
-  });
+  }) {
+    for (final data in input.data) {
+      data.validate();
+    }
+  }
 
   factory CopernicusRequest.create({
     required List<num> bbox,
