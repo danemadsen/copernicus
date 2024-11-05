@@ -141,32 +141,38 @@ class CopernicusProcessingOptions {
   }
 
   void validate(CopernicusSatillite satillite) {
+    List<String> errors = [];
+
     if (backCoefficiency != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('backCoefficiency is only available for Sentinel-1 GRD');
+      errors.add('backCoefficiency');
     }
 
     if (orthorectify != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('orthorectify is only available for Sentinel-1 GRD');
+      errors.add('orthorectify');
     }
 
     if (demInstance != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('demInstance is only available for Sentinel-1 GRD');
+      errors.add('demInstance');
     }
 
     if (radiometricTerrainOversampling != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('radiometricTerrainOversampling is only available for Sentinel-1 GRD');
+      errors.add('radiometricTerrainOversampling');
     }
 
     if (speckleFiltering != null && satillite != CopernicusSatillite.s1grd) {
-      throw ArgumentError('speckleFiltering is only available for Sentinel-1 GRD');
+      errors.add('speckleFiltering');
     }
 
     if (minQa != null && satillite != CopernicusSatillite.s5pl2) {
-      throw ArgumentError('minQa is only available for Sentinel-5P L2');
+      errors.add('minQa');
     }
 
     if (egm != null && satillite != CopernicusSatillite.dem) {
-      throw ArgumentError('egm is only available for DEM');
+      errors.add('egm');
+    }
+
+    if (errors.isNotEmpty) {
+      throw ArgumentError('The following arguments are not available for the selected satillite ($satillite): ${errors.join(', ')}');
     }
   }
 }
