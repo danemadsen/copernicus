@@ -1,12 +1,9 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusBackCoefficiency implements CopernicusEnum {
+enum CopernicusBackCoefficiency {
   betaZero,
   sigmaZeroEllipsoid,
   gammaZeroEllipsoid,
   gammaZeroTerrain;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusBackCoefficiency.betaZero:

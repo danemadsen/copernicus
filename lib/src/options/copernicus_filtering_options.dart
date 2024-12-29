@@ -9,7 +9,30 @@ import 'package:copernicus/src/types/copernicus_time_range.dart';
 import 'package:copernicus/src/types/copernicus_timeliness.dart';
 import 'package:copernicus/src/types/copernicus_view.dart';
 
+/// A class representing the filtering options for Copernicus data.
+///
+/// This class allows you to specify various filtering criteria for querying
+/// Copernicus data, including mosaicking order, resolution, acquisition mode,
+/// polarization, orbit direction, time range, timeliness, maximum cloud coverage,
+/// view, and DEM instance.
+///
+/// Properties:
+/// - `mosaickingOrder`: The order in which mosaicking is performed.
+/// - `resolution`: The resolution of the data.
+/// - `acquisitionMode`: The mode of data acquisition.
+/// - `polarization`: The polarization of the data.
+/// - `orbitDirection`: The direction of the satellite's orbit.
+/// - `timeRange`: The time range for the data.
+/// - `timeliness`: The timeliness of the data.
+/// - `maxCloudCoverage`: The maximum allowable cloud coverage.
+/// - `view`: The view configuration.
+/// - `instance`: The DEM instance.
 class CopernicusFilteringOptions {
+  /// The order in which mosaicking is performed.
+  /// 
+  /// This property determines the sequence in which images are combined
+  /// to create a mosaic. It can be set to a specific order or left null
+  /// if no specific order is required.
   final CopernicusMosaickingOrder? mosaickingOrder;
   final CopernicusResolution? resolution;
   final CopernicusAcquisitionMode? acquisitionMode;

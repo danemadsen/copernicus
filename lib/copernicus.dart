@@ -15,7 +15,6 @@ export 'src/satillite/copernicus_satillite.dart';
 export 'src/types/copernicus_acquisition_mode.dart';
 export 'src/types/copernicus_back_coefficiency.dart';
 export 'src/types/copernicus_dem_instance.dart';
-export 'src/types/copernicus_enum.dart';
 export 'src/types/copernicus_mosaicking_order.dart';
 export 'src/types/copernicus_orbit_direction.dart';
 export 'src/types/copernicus_polarization.dart';

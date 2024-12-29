@@ -1,6 +1,4 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusPolarization implements CopernicusEnum {
+enum CopernicusPolarization {
   sh,
   sv,
   dh,
@@ -10,7 +8,6 @@ enum CopernicusPolarization implements CopernicusEnum {
   vv,
   vh;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusPolarization.sh:

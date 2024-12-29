@@ -1,7 +1,6 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
 import 'package:copernicus/src/satillite/copernicus_band.dart';
 
-enum CopernicusSatillite implements CopernicusEnum{
+enum CopernicusSatillite {
   s1grd,
   s2l1c,
   s2l2a,
@@ -12,7 +11,6 @@ enum CopernicusSatillite implements CopernicusEnum{
   dem,
   datafusion;
 
-  @override
   String get value {
     switch (this) {
       case CopernicusSatillite.s1grd:

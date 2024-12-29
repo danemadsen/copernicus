@@ -1,10 +1,7 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusView implements CopernicusEnum {
+enum CopernicusView {
   nadir,
   oblique;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusView.nadir:

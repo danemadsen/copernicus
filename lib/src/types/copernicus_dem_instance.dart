@@ -1,11 +1,8 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusDemInstance implements CopernicusEnum {
+enum CopernicusDemInstance {
   ten,
   thirty,
   ninety;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusDemInstance.ten:

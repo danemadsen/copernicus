@@ -1,11 +1,8 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusMosaickingOrder implements CopernicusEnum {
+enum CopernicusMosaickingOrder {
   mostRecent,
   leastRecent,
   leastCC;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusMosaickingOrder.mostRecent:

@@ -1,13 +1,11 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
 import 'package:copernicus/src/types/copernicus_polarization.dart';
 
-enum CopernicusAcquisitionMode implements CopernicusEnum {
+enum CopernicusAcquisitionMode {
   sm,
   iw,
   ew,
   wv;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusAcquisitionMode.sm:

@@ -1,10 +1,7 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusResolution implements CopernicusEnum {
+enum CopernicusResolution {
   high,
   medium;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusResolution.high:

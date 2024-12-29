@@ -1,11 +1,8 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusSampling implements CopernicusEnum {
+enum CopernicusSampling {
   nearest,
   bilinear,
   bicubic;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusSampling.nearest:

@@ -1,6 +1,4 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusTimeliness implements CopernicusEnum {
+enum CopernicusTimeliness {
   nrt10m,
   nrt1h,
   nrt3h,
@@ -9,7 +7,6 @@ enum CopernicusTimeliness implements CopernicusEnum {
   reprocessing,
   archNormal;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusTimeliness.nrt10m:

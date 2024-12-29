@@ -1,10 +1,7 @@
-import 'package:copernicus/src/types/copernicus_enum.dart';
-
-enum CopernicusOrbitDirection implements CopernicusEnum {
+enum CopernicusOrbitDirection {
   ascending,
   descending;
   
-  @override
   String get value {
     switch (this) {
       case CopernicusOrbitDirection.ascending:
