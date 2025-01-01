@@ -22,4 +22,17 @@ class CopernicusRequestInput {
       'data': data.map((requestData) => requestData.map).toList()
     };
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusRequestInput) {
+      return bbox == other.bbox &&
+        crs == other.crs &&
+        data == other.data;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => bbox.hashCode ^ crs.hashCode ^ data.hashCode;
 }

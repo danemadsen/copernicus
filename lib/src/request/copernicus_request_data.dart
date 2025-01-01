@@ -39,4 +39,17 @@ class CopernicusRequestData {
     filteringOptions.validate(satillite);
     processingOptions?.validate(satillite);
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusRequestData) {
+      return satillite == other.satillite &&
+        filteringOptions == other.filteringOptions &&
+        processingOptions == other.processingOptions;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => satillite.hashCode ^ filteringOptions.hashCode ^ processingOptions.hashCode;
 }

@@ -15,4 +15,18 @@ class CopernicusSatilliteData {
     required this.filteringOptions, 
     this.processingOptions
   });
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusSatilliteData) {
+      return satillite == other.satillite &&
+        bands == other.bands &&
+        filteringOptions == other.filteringOptions &&
+        processingOptions == other.processingOptions;
+    }
+    return false;
+  }
+  
+  @override
+  int get hashCode => satillite.hashCode ^ bands.hashCode ^ filteringOptions.hashCode ^ processingOptions.hashCode;
 }

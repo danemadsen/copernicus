@@ -228,4 +228,24 @@ class CopernicusFilteringOptions {
       throw ArgumentError('The following arguments are not available for the selected satillite ($satillite): ${errors.join(', ')}');
     }
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusFilteringOptions) {
+      return mosaickingOrder == other.mosaickingOrder &&
+        resolution == other.resolution &&
+        acquisitionMode == other.acquisitionMode &&
+        polarization == other.polarization &&
+        orbitDirection == other.orbitDirection &&
+        timeRange == other.timeRange &&
+        timeliness == other.timeliness &&
+        maxCloudCoverage == other.maxCloudCoverage &&
+        view == other.view &&
+        instance == other.instance;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => mosaickingOrder.hashCode ^ resolution.hashCode ^ acquisitionMode.hashCode ^ polarization.hashCode ^ orbitDirection.hashCode ^ timeRange.hashCode ^ timeliness.hashCode ^ maxCloudCoverage.hashCode ^ view.hashCode ^ instance.hashCode;
 }

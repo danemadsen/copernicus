@@ -34,4 +34,16 @@ class CopernicusSpeckleFiltering {
       return 'None';
     }
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusSpeckleFiltering) {
+      return windowSizeX == other.windowSizeX &&
+        windowSizeY == other.windowSizeY;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => windowSizeX.hashCode ^ windowSizeY.hashCode;
 }

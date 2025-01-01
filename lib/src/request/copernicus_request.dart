@@ -52,4 +52,17 @@ class CopernicusRequest {
       'evalscript': evalscript.toString()
     };
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusRequest) {
+      return input == other.input &&
+        output == other.output &&
+        evalscript == other.evalscript;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => input.hashCode ^ output.hashCode ^ evalscript.hashCode;
 }

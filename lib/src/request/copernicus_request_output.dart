@@ -20,4 +20,16 @@ class CopernicusRequestOutput {
       ]
     };
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusRequestOutput) {
+      return width == other.width &&
+        height == other.height;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => width.hashCode ^ height.hashCode;
 }

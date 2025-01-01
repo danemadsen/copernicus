@@ -28,4 +28,12 @@ class CopernicusRequestEvalscript {
       }
     ''';
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusRequestEvalscript) {
+      return bands == other.bands;
+    }
+    return false;
+  }
 }

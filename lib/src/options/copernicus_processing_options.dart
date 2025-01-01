@@ -265,4 +265,23 @@ class CopernicusProcessingOptions {
       throw ArgumentError('The following arguments are not available for the selected satillite ($satillite): ${errors.join(', ')}');
     }
   }
+
+  @override
+  operator ==(Object other) {
+    if (other is CopernicusProcessingOptions) {
+      return upSampling == other.upSampling &&
+        downSampling == other.downSampling &&
+        backCoefficiency == other.backCoefficiency &&
+        orthorectify == other.orthorectify &&
+        demInstance == other.demInstance &&
+        radiometricTerrainOversampling == other.radiometricTerrainOversampling &&
+        speckleFiltering == other.speckleFiltering &&
+        minQa == other.minQa &&
+        egm == other.egm;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => upSampling.hashCode ^ downSampling.hashCode ^ backCoefficiency.hashCode ^ orthorectify.hashCode ^ demInstance.hashCode ^ radiometricTerrainOversampling.hashCode ^ speckleFiltering.hashCode ^ minQa.hashCode ^ egm.hashCode;
 }
