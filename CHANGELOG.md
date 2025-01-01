@@ -7,3 +7,6 @@
 
 ## 1.0.2
 - Removed redundant `CopernicusEnum` abstraction
+
+## 1.0.3
+- Add operators
