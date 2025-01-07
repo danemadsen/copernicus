@@ -60,12 +60,12 @@ class _HomePageState extends State<HomePage> {
             CopernicusRequestData(
               satillite: Satillite.s2l2a, 
               filteringOptions: FilteringOptions(
-                mosaickingOrder: CopernicusMosaickingOrder.mostRecent,
+                mosaickingOrder: MosaickingOrder.mostRecent,
                 maxCloudCoverage: 100,
               ),
               processingOptions: ProcessingOptions(
-                downSampling: CopernicusSampling.nearest,
-                upSampling: CopernicusSampling.bicubic,
+                downSampling: Sampling.nearest,
+                upSampling: Sampling.bicubic,
               )
             )
           ]

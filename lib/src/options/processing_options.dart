@@ -1,8 +1,8 @@
 import 'package:copernicus/src/satillite/satillite.dart';
-import 'package:copernicus/src/types/copernicus_back_coefficiency.dart';
-import 'package:copernicus/src/types/copernicus_dem_instance.dart';
-import 'package:copernicus/src/types/copernicus_speckle_filtering.dart';
-import 'package:copernicus/src/types/copernicus_sampling.dart';
+import 'package:copernicus/src/types/back_coefficiency.dart';
+import 'package:copernicus/src/types/dem_instance.dart';
+import 'package:copernicus/src/types/speckle_filtering.dart';
+import 'package:copernicus/src/types/sampling.dart';
 
 /// A class representing the processing options for Copernicus.
 /// 
@@ -15,8 +15,8 @@ class ProcessingOptions {
   /// processing of Copernicus data. It can be null, indicating that no 
   /// up-sampling is to be performed.
   /// 
-  /// Possible values are defined in the [CopernicusSampling] enum.
-  final CopernicusSampling? upSampling;
+  /// Possible values are defined in the [Sampling] enum.
+  final Sampling? upSampling;
 
   /// The downSampling option for Copernicus processing.
   /// 
@@ -24,14 +24,14 @@ class ProcessingOptions {
   /// during the processing of Copernicus data. It can be null, indicating
   /// that no down-sampling should be performed.
   /// 
-  /// Possible values are defined in the [CopernicusSampling] enum.
-  final CopernicusSampling? downSampling;
+  /// Possible values are defined in the [Sampling] enum.
+  final Sampling? downSampling;
 
   /// The backscattering coefficient option for Copernicus processing.
   /// 
   /// This parameter is optional and can be null. It represents the 
   /// backscattering coefficient used in the processing of Copernicus data.
-  final CopernicusBackCoefficiency? backCoefficiency;
+  final BackCoefficiency? backCoefficiency;
 
   /// Indicates whether orthorectification should be applied.
   /// 
@@ -44,7 +44,7 @@ class ProcessingOptions {
   /// The digital elevation model (DEM) instance used for processing.
   /// 
   /// This can be `null` if no DEM instance is specified.
-  final CopernicusDemInstance? demInstance;
+  final DemInstance? demInstance;
 
   /// The level of oversampling applied to radiometric terrain processing.
   /// 
@@ -60,7 +60,7 @@ class ProcessingOptions {
   /// noise in radar images.
   /// 
   /// It can be `null` if no speckle filtering is to be applied.
-  final CopernicusSpeckleFiltering? speckleFiltering;
+  final SpeckleFiltering? speckleFiltering;
 
   /// The minimum quality assurance (QA) value.
   /// 
@@ -152,22 +152,22 @@ class ProcessingOptions {
   /// Returns an instance of [ProcessingOptions] populated with the
   /// values from the provided [map].
   factory ProcessingOptions.fromMap(Map<String, dynamic> map) {
-    CopernicusSampling? upSampling;
+    Sampling? upSampling;
 
     if (map.containsKey('upSampling')) {
-      upSampling = CopernicusSampling.values.firstWhere((element) => element.value == map['upSampling']);
+      upSampling = Sampling.values.firstWhere((element) => element.value == map['upSampling']);
     }
 
-    CopernicusSampling? downSampling;
+    Sampling? downSampling;
 
     if (map.containsKey('downSampling')) {
-      downSampling = CopernicusSampling.values.firstWhere((element) => element.value == map['downSampling']);
+      downSampling = Sampling.values.firstWhere((element) => element.value == map['downSampling']);
     }
 
-    CopernicusBackCoefficiency? backCoefficiency;
+    BackCoefficiency? backCoefficiency;
 
     if (map.containsKey('backCoefficiency')) {
-      backCoefficiency = CopernicusBackCoefficiency.values.firstWhere((element) => element.value == map['backCoefficiency']);
+      backCoefficiency = BackCoefficiency.values.firstWhere((element) => element.value == map['backCoefficiency']);
     }
 
     bool? orthorectify;
@@ -176,10 +176,10 @@ class ProcessingOptions {
       orthorectify = map['orthorectify'];
     }
 
-    CopernicusDemInstance? demInstance;
+    DemInstance? demInstance;
 
     if (map.containsKey('demInstance')) {
-      demInstance = CopernicusDemInstance.values.firstWhere((element) => element.value == map['demInstance']);
+      demInstance = DemInstance.values.firstWhere((element) => element.value == map['demInstance']);
     }
 
     int? radiometricTerrainOversampling;
@@ -188,10 +188,10 @@ class ProcessingOptions {
       radiometricTerrainOversampling = map['radiometricTerrainOversampling'];
     }
 
-    CopernicusSpeckleFiltering? speckleFiltering;
+    SpeckleFiltering? speckleFiltering;
 
     if (map.containsKey('speckleFiltering')) {
-      speckleFiltering = CopernicusSpeckleFiltering(
+      speckleFiltering = SpeckleFiltering(
         windowSizeX: map['speckleFiltering']['windowSizeX'],
         windowSizeY: map['speckleFiltering']['windowSizeY']
       );

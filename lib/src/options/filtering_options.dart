@@ -1,13 +1,13 @@
 import 'package:copernicus/src/satillite/satillite.dart';
-import 'package:copernicus/src/types/copernicus_acquisition_mode.dart';
-import 'package:copernicus/src/types/copernicus_dem_instance.dart';
-import 'package:copernicus/src/types/copernicus_mosaicking_order.dart';
-import 'package:copernicus/src/types/copernicus_orbit_direction.dart';
-import 'package:copernicus/src/types/copernicus_polarization.dart';
-import 'package:copernicus/src/types/copernicus_resolution.dart';
-import 'package:copernicus/src/types/copernicus_time_range.dart';
-import 'package:copernicus/src/types/copernicus_timeliness.dart';
-import 'package:copernicus/src/types/copernicus_view.dart';
+import 'package:copernicus/src/types/acquisition_mode.dart';
+import 'package:copernicus/src/types/dem_instance.dart';
+import 'package:copernicus/src/types/mosaicking_order.dart';
+import 'package:copernicus/src/types/orbit_direction.dart';
+import 'package:copernicus/src/types/polarization.dart';
+import 'package:copernicus/src/types/resolution.dart';
+import 'package:copernicus/src/types/time_range.dart';
+import 'package:copernicus/src/types/timeliness.dart';
+import 'package:copernicus/src/types/view.dart';
 
 /// A class representing the filtering options for Copernicus data.
 ///
@@ -33,23 +33,23 @@ class FilteringOptions {
   /// This property determines the sequence in which images are combined
   /// to create a mosaic. It can be set to a specific order or left null
   /// if no specific order is required.
-  final CopernicusMosaickingOrder? mosaickingOrder;
+  final MosaickingOrder? mosaickingOrder;
   /// The resolution setting for Copernicus data filtering.
   /// 
   /// This optional parameter allows you to specify the desired resolution
   /// for the data being processed. If not provided, a default resolution
   /// may be used.
   /// 
-  /// Possible values are defined in the `CopernicusResolution` enum.
-  final CopernicusResolution? resolution;
-  final CopernicusAcquisitionMode? acquisitionMode;
-  final CopernicusPolarization? polarization;
-  final CopernicusOrbitDirection? orbitDirection;
-  final CopernicusTimeRange? timeRange;
-  final CopernicusTimeliness? timeliness;
+  /// Possible values are defined in the `Resolution` enum.
+  final Resolution? resolution;
+  final AcquisitionMode? acquisitionMode;
+  final Polarization? polarization;
+  final OrbitDirection? orbitDirection;
+  final TimeRange? timeRange;
+  final Timeliness? timeliness;
   final int? maxCloudCoverage;
-  final CopernicusView? view;
-  final CopernicusDemInstance? instance;
+  final View? view;
+  final DemInstance? instance;
 
   Map<String, dynamic> get map {
     Map<String, dynamic> map = {};
@@ -111,40 +111,40 @@ class FilteringOptions {
   });
 
   factory FilteringOptions.fromMap(Map<String, dynamic> map) {
-    CopernicusMosaickingOrder? mosaickingOrder;
+    MosaickingOrder? mosaickingOrder;
 
     if (map.containsKey('mosaickingOrder')) {
-      mosaickingOrder = CopernicusMosaickingOrder.values.firstWhere((element) => element.value == map['mosaickingOrder']);
+      mosaickingOrder = MosaickingOrder.values.firstWhere((element) => element.value == map['mosaickingOrder']);
     }
 
-    CopernicusResolution? resolution;
+    Resolution? resolution;
 
     if (map.containsKey('resolution')) {
-      resolution = CopernicusResolution.values.firstWhere((element) => element.value == map['resolution']);
+      resolution = Resolution.values.firstWhere((element) => element.value == map['resolution']);
     }
 
-    CopernicusAcquisitionMode? acquisitionMode;
+    AcquisitionMode? acquisitionMode;
 
     if (map.containsKey('acquisitionMode')) {
-      acquisitionMode = CopernicusAcquisitionMode.values.firstWhere((element) => element.value == map['acquisitionMode']);
+      acquisitionMode = AcquisitionMode.values.firstWhere((element) => element.value == map['acquisitionMode']);
     }
 
-    CopernicusPolarization? polarization;
+    Polarization? polarization;
 
     if (map.containsKey('polarization')) {
-      polarization = CopernicusPolarization.values.firstWhere((element) => element.value == map['polarization']);
+      polarization = Polarization.values.firstWhere((element) => element.value == map['polarization']);
     }
 
-    CopernicusOrbitDirection? orbitDirection;
+    OrbitDirection? orbitDirection;
 
     if (map.containsKey('orbitDirection')) {
-      orbitDirection = CopernicusOrbitDirection.values.firstWhere((element) => element.value == map['orbitDirection']);
+      orbitDirection = OrbitDirection.values.firstWhere((element) => element.value == map['orbitDirection']);
     }
 
-    CopernicusTimeliness? timeliness;
+    Timeliness? timeliness;
 
     if (map.containsKey('timeliness')) {
-      timeliness = CopernicusTimeliness.values.firstWhere((element) => element.value == map['timeliness']);
+      timeliness = Timeliness.values.firstWhere((element) => element.value == map['timeliness']);
     }
 
     int? maxCloudCoverage;
@@ -153,25 +153,25 @@ class FilteringOptions {
       maxCloudCoverage = map['maxCloudCoverage'];
     }
 
-    CopernicusTimeRange? timeRange;
+    TimeRange? timeRange;
 
     if (map.containsKey('timeRange')) {
-      timeRange = CopernicusTimeRange(
+      timeRange = TimeRange(
         from: DateTime.fromMillisecondsSinceEpoch(map['timeRange']['from']), 
         to: DateTime.fromMillisecondsSinceEpoch(map['timeRange']['to'])
       );
     }
 
-    CopernicusView? view;
+    View? view;
 
     if (map.containsKey('view')) {
-      view = CopernicusView.values.firstWhere((element) => element.value == map['view']);
+      view = View.values.firstWhere((element) => element.value == map['view']);
     }
 
-    CopernicusDemInstance? instance;
+    DemInstance? instance;
 
     if (map.containsKey('instance')) {
-      instance = CopernicusDemInstance.values.firstWhere((element) => element.value == map['instance']);
+      instance = DemInstance.values.firstWhere((element) => element.value == map['instance']);
     }
 
     return FilteringOptions(

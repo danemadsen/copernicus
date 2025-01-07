@@ -1,4 +1,4 @@
-enum CopernicusPolarization {
+enum Polarization {
   sh,
   sv,
   dh,
@@ -10,59 +10,59 @@ enum CopernicusPolarization {
   
   String get value {
     switch (this) {
-      case CopernicusPolarization.sh:
+      case Polarization.sh:
         return 'SH';
-      case CopernicusPolarization.sv:
+      case Polarization.sv:
         return 'SV';
-      case CopernicusPolarization.dh:
+      case Polarization.dh:
         return 'DH';
-      case CopernicusPolarization.dv:
+      case Polarization.dv:
         return 'DV';
-      case CopernicusPolarization.hh:
+      case Polarization.hh:
         return 'HH';
-      case CopernicusPolarization.hv:
+      case Polarization.hv:
         return 'HV';
-      case CopernicusPolarization.vv:
+      case Polarization.vv:
         return 'VV';
-      case CopernicusPolarization.vh:
+      case Polarization.vh:
         return 'VH';
     }
   }
 
   String get description {
     switch (this) {
-      case CopernicusPolarization.sh:
+      case Polarization.sh:
         return 'HH';
-      case CopernicusPolarization.sv:
+      case Polarization.sv:
         return 'VV';
-      case CopernicusPolarization.dh:
+      case Polarization.dh:
         return 'HH+HV';
-      case CopernicusPolarization.dv:
+      case Polarization.dv:
         return 'VV+VH';
-      case CopernicusPolarization.hh:
+      case Polarization.hh:
         return 'Partial Dual, HH only';
-      case CopernicusPolarization.hv:
+      case Polarization.hv:
         return 'Partial Dual, HV only';
-      case CopernicusPolarization.vv:
+      case Polarization.vv:
         return 'Partial Dual, VV only';
-      case CopernicusPolarization.vh:
+      case Polarization.vh:
         return 'Partial Dual, VH only';
     }
   }
 
   String? get notes {
     switch (this) {
-      case CopernicusPolarization.dh:
+      case Polarization.dh:
         return 'Typical for EW acquisitions';
-      case CopernicusPolarization.dv:
+      case Polarization.dv:
         return 'Typical for IW acquisitions';
-      case CopernicusPolarization.hh:
+      case Polarization.hh:
         return 'HH+HV was acquired, only HH is available in this product';
-      case CopernicusPolarization.hv:
+      case Polarization.hv:
         return 'HH+HV was acquired, only HV is available in this product';
-      case CopernicusPolarization.vv:
+      case Polarization.vv:
         return 'VV+VH was acquired, only VV is available in this product';
-      case CopernicusPolarization.vh:
+      case Polarization.vh:
         return 'VV+VH was acquired, only VH is available in this product';
       default:
         return null;

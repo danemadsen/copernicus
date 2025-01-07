@@ -1,8 +1,8 @@
-class CopernicusTimeRange {
+class TimeRange {
   final DateTime to;
   final DateTime from;
 
-  const CopernicusTimeRange({
+  const TimeRange({
     required this.to,
     required this.from,
   });
@@ -20,7 +20,7 @@ class CopernicusTimeRange {
 
   @override
   operator ==(Object other) {
-    if (other is CopernicusTimeRange) {
+    if (other is TimeRange) {
       return to == other.to &&
         from == other.from;
     }

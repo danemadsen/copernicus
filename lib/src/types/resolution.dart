@@ -7,7 +7,7 @@
 ///   '10m/px for IW/SM and 25m/px for EW'.
 /// - `medium`: Medium resolution with a value of 'MEDIUM' and a description of
 ///   '40m/px for IW/SM and EW'.
-enum CopernicusResolution {
+enum Resolution {
   /// Represents a high resolution setting for Copernicus.
   high,
 
@@ -24,9 +24,9 @@ enum CopernicusResolution {
   /// Throws an exception if the enum value is not recognized.
   String get value {
     switch (this) {
-      case CopernicusResolution.high:
+      case Resolution.high:
         return 'HIGH';
-      case CopernicusResolution.medium:
+      case Resolution.medium:
         return 'MEDIUM';
     }
   }
@@ -41,9 +41,9 @@ enum CopernicusResolution {
   /// Throws an exception if the resolution is not recognized.
   String get description {
     switch (this) {
-      case CopernicusResolution.high:
+      case Resolution.high:
         return '10m/px for IW/SM and 25m/px for EW';
-      case CopernicusResolution.medium:
+      case Resolution.medium:
         return '40m/px for IW/SM and EW';
     }
   }

@@ -1,8 +1,8 @@
-class CopernicusSpeckleFiltering {
+class SpeckleFiltering {
   final int? windowSizeX;
   final int? windowSizeY;
 
-  CopernicusSpeckleFiltering({
+  SpeckleFiltering({
     this.windowSizeX, 
     this.windowSizeY
   }) {
@@ -37,7 +37,7 @@ class CopernicusSpeckleFiltering {
 
   @override
   operator ==(Object other) {
-    if (other is CopernicusSpeckleFiltering) {
+    if (other is SpeckleFiltering) {
       return windowSizeX == other.windowSizeX &&
         windowSizeY == other.windowSizeY;
     }

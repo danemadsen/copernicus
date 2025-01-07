@@ -7,7 +7,7 @@
 /// - `nearest`: Nearest neighbor interpolation.
 /// - `bilinear`: Bilinear interpolation.
 /// - `bicubic`: Bicubic interpolation.
-enum CopernicusSampling {
+enum Sampling {
   /// Represents the nearest sampling method.
   nearest,
 
@@ -17,7 +17,7 @@ enum CopernicusSampling {
   /// average of the four nearest pixel values to estimate a new pixel value. 
   /// This method provides smoother results compared to nearest-neighbor sampling.
   bilinear,
-  
+
   /// Represents the bicubic sampling method.
   /// Bicubic sampling is a resampling method that uses the values of the 16 nearest pixels
   /// (4x4 grid) to estimate the new pixel value. It provides smoother and more accurate
@@ -31,11 +31,11 @@ enum CopernicusSampling {
   /// - `bicubic`: Returns 'BICUBIC'.
   String get value {
     switch (this) {
-      case CopernicusSampling.nearest:
+      case Sampling.nearest:
         return 'NEAREST';
-      case CopernicusSampling.bilinear:
+      case Sampling.bilinear:
         return 'BILINEAR';
-      case CopernicusSampling.bicubic:
+      case Sampling.bicubic:
         return 'BICUBIC';
     }
   }
@@ -47,15 +47,15 @@ enum CopernicusSampling {
   /// - `bicubic`: Returns 'Bicubic interpolation'.
   String get description {
    switch (this) {
-      case CopernicusSampling.nearest:
+      case Sampling.nearest:
         return 'Nearest neighbor interpolation';
-      case CopernicusSampling.bilinear:
+      case Sampling.bilinear:
         return 'Bilinear interpolation';
-      case CopernicusSampling.bicubic:
+      case Sampling.bicubic:
         return 'Bicubic interpolation';
     }
   }
 
   /// The default sampling method, which is `nearest`.
-  static CopernicusSampling get defaultOption => CopernicusSampling.nearest;
+  static Sampling get defaultOption => Sampling.nearest;
 }

@@ -1,21 +1,21 @@
-enum CopernicusOrbitDirection {
+enum OrbitDirection {
   ascending,
   descending;
   
   String get value {
     switch (this) {
-      case CopernicusOrbitDirection.ascending:
+      case OrbitDirection.ascending:
         return 'ASCENDING';
-      case CopernicusOrbitDirection.descending:
+      case OrbitDirection.descending:
         return 'DESCENDING';
     }
   }
 
   String get description {
     switch (this) {
-      case CopernicusOrbitDirection.ascending:
+      case OrbitDirection.ascending:
         return 'Data acquired when the satellite was traveling approx. towards the Earth\'s North pole.';
-      case CopernicusOrbitDirection.descending:
+      case OrbitDirection.descending:
         return 'Data acquired when the satellite was traveling approx. towards the Earth\'s South pole.';
     }
   }
