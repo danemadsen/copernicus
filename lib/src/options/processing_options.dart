@@ -1,4 +1,4 @@
-import 'package:copernicus/src/satillite/copernicus_satillite.dart';
+import 'package:copernicus/src/satillite/satillite.dart';
 import 'package:copernicus/src/types/copernicus_back_coefficiency.dart';
 import 'package:copernicus/src/types/copernicus_dem_instance.dart';
 import 'package:copernicus/src/types/copernicus_speckle_filtering.dart';
@@ -8,7 +8,7 @@ import 'package:copernicus/src/types/copernicus_sampling.dart';
 /// 
 /// This class contains various settings and configurations that can be
 /// used to customize the processing behavior of the Copernicus system.
-class CopernicusProcessingOptions {
+class ProcessingOptions {
   /// The upSampling option for Copernicus processing.
   /// 
   /// This option specifies the type of up-sampling to be applied during the 
@@ -74,7 +74,7 @@ class CopernicusProcessingOptions {
   /// If `null`, the default behavior is used.
   final bool? egm;
 
-  /// Constructs an instance of [CopernicusProcessingOptions].
+  /// Constructs an instance of [ProcessingOptions].
   ///
   /// This class holds the processing options for the Copernicus library.
   /// 
@@ -85,7 +85,7 @@ class CopernicusProcessingOptions {
   ///   // provide necessary parameters here
   /// );
   /// ```
-  const CopernicusProcessingOptions({
+  const ProcessingOptions({
     this.upSampling, 
     this.downSampling,
     this.backCoefficiency,
@@ -144,14 +144,14 @@ class CopernicusProcessingOptions {
     return map;
   }
 
-  /// Creates an instance of [CopernicusProcessingOptions] from a map.
+  /// Creates an instance of [ProcessingOptions] from a map.
   ///
   /// The [map] parameter is a [Map] containing key-value pairs that correspond
-  /// to the properties of [CopernicusProcessingOptions].
+  /// to the properties of [ProcessingOptions].
   ///
-  /// Returns an instance of [CopernicusProcessingOptions] populated with the
+  /// Returns an instance of [ProcessingOptions] populated with the
   /// values from the provided [map].
-  factory CopernicusProcessingOptions.fromMap(Map<String, dynamic> map) {
+  factory ProcessingOptions.fromMap(Map<String, dynamic> map) {
     CopernicusSampling? upSampling;
 
     if (map.containsKey('upSampling')) {
@@ -209,7 +209,7 @@ class CopernicusProcessingOptions {
       egm = map['egm'];
     }
 
-    return CopernicusProcessingOptions(
+    return ProcessingOptions(
       upSampling: upSampling,
       downSampling: downSampling,
       backCoefficiency: backCoefficiency,
@@ -230,34 +230,34 @@ class CopernicusProcessingOptions {
   /// Throws an [ArgumentError] if the satellite is not valid.
   ///
   /// - Parameter satillite: The Copernicus satellite to be validated.
-  void validate(CopernicusSatillite satillite) {
+  void validate(Satillite satillite) {
     List<String> errors = [];
 
-    if (backCoefficiency != null && satillite != CopernicusSatillite.s1grd) {
+    if (backCoefficiency != null && satillite != Satillite.s1grd) {
       errors.add('backCoefficiency');
     }
 
-    if (orthorectify != null && satillite != CopernicusSatillite.s1grd) {
+    if (orthorectify != null && satillite != Satillite.s1grd) {
       errors.add('orthorectify');
     }
 
-    if (demInstance != null && satillite != CopernicusSatillite.s1grd) {
+    if (demInstance != null && satillite != Satillite.s1grd) {
       errors.add('demInstance');
     }
 
-    if (radiometricTerrainOversampling != null && satillite != CopernicusSatillite.s1grd) {
+    if (radiometricTerrainOversampling != null && satillite != Satillite.s1grd) {
       errors.add('radiometricTerrainOversampling');
     }
 
-    if (speckleFiltering != null && satillite != CopernicusSatillite.s1grd) {
+    if (speckleFiltering != null && satillite != Satillite.s1grd) {
       errors.add('speckleFiltering');
     }
 
-    if (minQa != null && satillite != CopernicusSatillite.s5pl2) {
+    if (minQa != null && satillite != Satillite.s5pl2) {
       errors.add('minQa');
     }
 
-    if (egm != null && satillite != CopernicusSatillite.dem) {
+    if (egm != null && satillite != Satillite.dem) {
       errors.add('egm');
     }
 
@@ -268,7 +268,7 @@ class CopernicusProcessingOptions {
 
   @override
   operator ==(Object other) {
-    if (other is CopernicusProcessingOptions) {
+    if (other is ProcessingOptions) {
       return upSampling == other.upSampling &&
         downSampling == other.downSampling &&
         backCoefficiency == other.backCoefficiency &&

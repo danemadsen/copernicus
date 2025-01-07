@@ -1,7 +1,7 @@
-import 'package:copernicus/src/satillite/copernicus_band.dart';
+import 'package:copernicus/src/satillite/band.dart';
 
 class CopernicusRequestEvalscript {
-  final Map<CopernicusBand, double> bands;
+  final Map<Band, double> bands;
 
   CopernicusRequestEvalscript(this.bands);
 

@@ -8,14 +8,14 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:copernicus/src/providers/copernicus_image_provider.dart';
 import 'package:copernicus/src/request/copernicus_request.dart';
 import 'package:copernicus/src/request/copernicus_request_data.dart';
-import 'package:copernicus/src/satillite/copernicus_band.dart';
+import 'package:copernicus/src/satillite/band.dart';
 
 class CopernicusTileProvider extends TileProvider {
   final HashMap<TileCoordinates, Completer<void>> _tilesInProgress = HashMap();
   final Dio _dioClient;
   final String authToken;
   final List<CopernicusRequestData> data;
-  final Map<CopernicusBand, double> bands;
+  final Map<Band, double> bands;
 
   CopernicusTileProvider({
     super.headers,

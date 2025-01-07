@@ -1,12 +1,12 @@
-import 'package:copernicus/src/satillite/copernicus_satillite.dart';
-import 'package:copernicus/src/options/copernicus_filtering_options.dart';
-import 'package:copernicus/src/options/copernicus_processing_options.dart';
-import 'package:copernicus/src/satillite/copernicus_satillite_data.dart';
+import 'package:copernicus/src/satillite/satillite.dart';
+import 'package:copernicus/src/options/filtering_options.dart';
+import 'package:copernicus/src/options/processing_options.dart';
+import 'package:copernicus/src/satillite/satillite_data.dart';
 
 class CopernicusRequestData {
-  final CopernicusSatillite satillite;
-  final CopernicusFilteringOptions filteringOptions;
-  final CopernicusProcessingOptions? processingOptions;
+  final Satillite satillite;
+  final FilteringOptions filteringOptions;
+  final ProcessingOptions? processingOptions;
 
   const CopernicusRequestData({
     required this.satillite, 
@@ -14,7 +14,7 @@ class CopernicusRequestData {
     this.processingOptions
   });
 
-  factory CopernicusRequestData.fromSatilliteData(CopernicusSatilliteData data) {
+  factory CopernicusRequestData.fromSatilliteData(SatilliteData data) {
     return CopernicusRequestData(
       satillite: data.satillite,
       filteringOptions: data.filteringOptions,

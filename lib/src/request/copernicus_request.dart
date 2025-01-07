@@ -2,7 +2,7 @@ import 'package:copernicus/src/request/copernicus_request_data.dart';
 import 'package:copernicus/src/request/copernicus_request_evalscript.dart';
 import 'package:copernicus/src/request/copernicus_request_input.dart';
 import 'package:copernicus/src/request/copernicus_request_output.dart';
-import 'package:copernicus/src/satillite/copernicus_band.dart';
+import 'package:copernicus/src/satillite/band.dart';
 
 class CopernicusRequest {
   final CopernicusRequestInput input;
@@ -23,10 +23,10 @@ class CopernicusRequest {
     required List<num> bbox,
     required List<CopernicusRequestData> data,
     String crs = 'http://www.opengis.net/def/crs/EPSG/0/4326',
-    Map<CopernicusBand, double> bands = const {
-      CopernicusBand.s2b04: 2.5,
-      CopernicusBand.s2b03: 2.5,
-      CopernicusBand.s2b02: 2.5
+    Map<Band, double> bands = const {
+      Band.s2b04: 2.5,
+      Band.s2b03: 2.5,
+      Band.s2b02: 2.5
     },
     int width = 512,
     int height = 512,

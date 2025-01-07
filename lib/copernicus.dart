@@ -1,7 +1,7 @@
 library copernicus;
 
-export 'src/options/copernicus_filtering_options.dart';
-export 'src/options/copernicus_processing_options.dart';
+export 'src/options/filtering_options.dart';
+export 'src/options/processing_options.dart';
 export 'src/providers/copernicus_image_provider.dart';
 export 'src/providers/copernicus_tile_provider.dart';
 export 'src/request/copernicus_request_data.dart';
@@ -9,9 +9,9 @@ export 'src/request/copernicus_request_evalscript.dart';
 export 'src/request/copernicus_request_input.dart';
 export 'src/request/copernicus_request_output.dart';
 export 'src/request/copernicus_request.dart';
-export 'src/satillite/copernicus_band.dart';
-export 'src/satillite/copernicus_satillite_data.dart';
-export 'src/satillite/copernicus_satillite.dart';
+export 'src/satillite/band.dart';
+export 'src/satillite/satillite_data.dart';
+export 'src/satillite/satillite.dart';
 export 'src/types/copernicus_acquisition_mode.dart';
 export 'src/types/copernicus_back_coefficiency.dart';
 export 'src/types/copernicus_dem_instance.dart';

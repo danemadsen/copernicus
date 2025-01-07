@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:copernicus/src/request/copernicus_request_data.dart';
-import 'package:copernicus/src/satillite/copernicus_band.dart';
+import 'package:copernicus/src/satillite/band.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -49,9 +49,9 @@ class CopernicusLayer extends StatefulWidget {
   /// A list of [CopernicusRequestData] objects representing the data for the Copernicus layer.
   final List<CopernicusRequestData> data;
 
-  /// A map that associates each [CopernicusBand] with a corresponding double value.
+  /// A map that associates each [Band] with a corresponding double value.
   /// This can be used to store and retrieve band-specific data for a Copernicus layer.
-  final Map<CopernicusBand, double> bands;
+  final Map<Band, double> bands;
   
   /// Creates a new instance of the [CopernicusLayer].
   ///
@@ -63,7 +63,7 @@ class CopernicusLayer extends StatefulWidget {
     required this.clientId,
     required this.clientSecret,
     required this.data,
-    this.bands = const {CopernicusBand.s2b04 : 2.5, CopernicusBand.s2b03 : 2.5, CopernicusBand.s2b02 : 2.5}
+    this.bands = const {Band.s2b04 : 2.5, Band.s2b03 : 2.5, Band.s2b02 : 2.5}
   });
 
   @override

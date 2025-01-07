@@ -1,4 +1,4 @@
-import 'package:copernicus/src/satillite/copernicus_satillite.dart';
+import 'package:copernicus/src/satillite/satillite.dart';
 import 'package:copernicus/src/types/copernicus_acquisition_mode.dart';
 import 'package:copernicus/src/types/copernicus_dem_instance.dart';
 import 'package:copernicus/src/types/copernicus_mosaicking_order.dart';
@@ -27,7 +27,7 @@ import 'package:copernicus/src/types/copernicus_view.dart';
 /// - `maxCloudCoverage`: The maximum allowable cloud coverage.
 /// - `view`: The view configuration.
 /// - `instance`: The DEM instance.
-class CopernicusFilteringOptions {
+class FilteringOptions {
   /// The order in which mosaicking is performed.
   /// 
   /// This property determines the sequence in which images are combined
@@ -97,7 +97,7 @@ class CopernicusFilteringOptions {
     return map;
   }
 
-  const CopernicusFilteringOptions({
+  const FilteringOptions({
     this.mosaickingOrder,
     this.resolution,
     this.acquisitionMode,
@@ -110,7 +110,7 @@ class CopernicusFilteringOptions {
     this.instance,
   });
 
-  factory CopernicusFilteringOptions.fromMap(Map<String, dynamic> map) {
+  factory FilteringOptions.fromMap(Map<String, dynamic> map) {
     CopernicusMosaickingOrder? mosaickingOrder;
 
     if (map.containsKey('mosaickingOrder')) {
@@ -174,7 +174,7 @@ class CopernicusFilteringOptions {
       instance = CopernicusDemInstance.values.firstWhere((element) => element.value == map['instance']);
     }
 
-    return CopernicusFilteringOptions(
+    return FilteringOptions(
       mosaickingOrder: mosaickingOrder,
       resolution: resolution,
       acquisitionMode: acquisitionMode,
@@ -188,46 +188,46 @@ class CopernicusFilteringOptions {
     );
   }
 
-  void validate(CopernicusSatillite satillite) {
+  void validate(Satillite satillite) {
     List<String> errors = [];
 
-    if (mosaickingOrder != null && (satillite == CopernicusSatillite.dem || satillite == CopernicusSatillite.datafusion)) {
+    if (mosaickingOrder != null && (satillite == Satillite.dem || satillite == Satillite.datafusion)) {
       errors.add('mosaickingOrder');
     }
 
-    if (resolution != null && satillite != CopernicusSatillite.s1grd) {
+    if (resolution != null && satillite != Satillite.s1grd) {
       errors.add('resolution');
     }
 
-    if (acquisitionMode != null && satillite != CopernicusSatillite.s1grd) {
+    if (acquisitionMode != null && satillite != Satillite.s1grd) {
       errors.add('acquisitionMode');
     }
 
-    if (polarization != null && satillite != CopernicusSatillite.s1grd) {
+    if (polarization != null && satillite != Satillite.s1grd) {
       errors.add('polarization');
     }
 
-    if (orbitDirection != null && satillite != CopernicusSatillite.s1grd && satillite != CopernicusSatillite.s3slstr) {
+    if (orbitDirection != null && satillite != Satillite.s1grd && satillite != Satillite.s3slstr) {
       errors.add('orbitDirection');
     }
 
-    if (timeRange != null && satillite != CopernicusSatillite.s5pl2) {
+    if (timeRange != null && satillite != Satillite.s5pl2) {
       errors.add('timeRange');
     }
 
-    if (timeliness != null && satillite != CopernicusSatillite.s1grd && satillite != CopernicusSatillite.s5pl2) {
+    if (timeliness != null && satillite != Satillite.s1grd && satillite != Satillite.s5pl2) {
       errors.add('timeliness');
     }
 
-    if (maxCloudCoverage != null && satillite != CopernicusSatillite.s2l1c && satillite != CopernicusSatillite.s2l2a && satillite != CopernicusSatillite.s3olcil2) {
+    if (maxCloudCoverage != null && satillite != Satillite.s2l1c && satillite != Satillite.s2l2a && satillite != Satillite.s3olcil2) {
       errors.add('maxCloudCoverage');
     }
 
-    if (view != null && satillite != CopernicusSatillite.s3slstr) {
+    if (view != null && satillite != Satillite.s3slstr) {
       errors.add('view');
     }
 
-    if (instance != null && satillite != CopernicusSatillite.dem) {
+    if (instance != null && satillite != Satillite.dem) {
       errors.add('instance');
     }
 
@@ -238,7 +238,7 @@ class CopernicusFilteringOptions {
 
   @override
   operator ==(Object other) {
-    if (other is CopernicusFilteringOptions) {
+    if (other is FilteringOptions) {
       return mosaickingOrder == other.mosaickingOrder &&
         resolution == other.resolution &&
         acquisitionMode == other.acquisitionMode &&
