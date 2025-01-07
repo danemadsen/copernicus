@@ -34,6 +34,13 @@ class CopernicusFilteringOptions {
   /// to create a mosaic. It can be set to a specific order or left null
   /// if no specific order is required.
   final CopernicusMosaickingOrder? mosaickingOrder;
+  /// The resolution setting for Copernicus data filtering.
+  /// 
+  /// This optional parameter allows you to specify the desired resolution
+  /// for the data being processed. If not provided, a default resolution
+  /// may be used.
+  /// 
+  /// Possible values are defined in the `CopernicusResolution` enum.
   final CopernicusResolution? resolution;
   final CopernicusAcquisitionMode? acquisitionMode;
   final CopernicusPolarization? polarization;

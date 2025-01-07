@@ -36,4 +36,7 @@ class CopernicusRequestEvalscript {
     }
     return false;
   }
+
+  @override
+  int get hashCode => bands.hashCode;
 }
