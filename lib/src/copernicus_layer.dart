@@ -38,13 +38,16 @@ class CopernicusLayer extends StatefulWidget {
   /// 
   /// This is a unique identifier assigned to each client application
   /// that is used to track and manage API usage.
-  final String clientId;
+  final String? clientId;
 
   /// The secret key used to authenticate the client.
   /// 
   /// This key should be kept confidential and not exposed in the source code.
   /// It is used to securely communicate with the server.
-  final String clientSecret;
+  final String? clientSecret;
+
+  /// The authentication token used to access the Copernicus API.
+  final String? authToken;
 
   /// A list of [CopernicusRequestData] objects representing the data for the Copernicus layer.
   final List<CopernicusRequestData> data;
@@ -60,8 +63,9 @@ class CopernicusLayer extends StatefulWidget {
   const CopernicusLayer({
     super.key, 
     this.dioClient,
-    required this.clientId,
-    required this.clientSecret,
+    this.clientId,
+    this.clientSecret,
+    this.authToken,
     required this.data,
     this.bands = const {Band.s2b04 : 2.5, Band.s2b03 : 2.5, Band.s2b02 : 2.5}
   });
@@ -72,6 +76,12 @@ class CopernicusLayer extends StatefulWidget {
 
 class _CopernicusLayerState extends State<CopernicusLayer> {
   Future<String> getAuthToken() async {
+    if (widget.authToken != null) {
+      return widget.authToken!;
+    }
+
+    assert(widget.clientId != null && widget.clientSecret != null, 'Client ID and secret must be provided');
+
     final dio = widget.dioClient ?? Dio();
     try {
       final response = await dio.post(
